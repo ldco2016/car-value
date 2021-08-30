@@ -22,9 +22,11 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Used Car Pricing API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+![used_car_pricing](used_car_pricing.png)
+
+## API Design
 
 ## Installation
 
