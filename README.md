@@ -44,6 +44,8 @@ These will then be grouped into their own separate modules.
 
 ![users_reports_module](users_reports_module.png)
 
+One of the big focuses is why we create modules, why do we share code between them?
+
 ## Installation
 
 ```bash
