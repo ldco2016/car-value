@@ -28,6 +28,20 @@
 
 ## API Design
 
+![api_design](api_design.png)
+
+Users will be allowed to get reports and submit reports of the vehicle they just sold. This will add in to the dataset to give more information about what the current state of the market looks like. Will ensure that before adding report, require administrator to make a request `PATCH` to `/reports` and also want to know the id of the report to be approved and whether the report is approved.
+
+Routes not shown here may be added in the future.
+
+## Module Design
+
+One controller related to handling users, maybe a single service to handle data access and business logic around those users. A repository to handle the storage of the users in some database. There will be a similar structure to handle reports as well such as a **Reports Controller**, **Reports Service** and **Reports Repository**.
+
+![controller_service_repo](controller_service_repo.png)
+
+These will then be grouped into their own separate modules.
+
 ## Installation
 
 ```bash
