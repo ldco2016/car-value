@@ -42,6 +42,8 @@ One controller related to handling users, maybe a single service to handle data 
 
 These will then be grouped into their own separate modules.
 
+![users_reports_module](users_reports_module.png)
+
 ## Installation
 
 ```bash
