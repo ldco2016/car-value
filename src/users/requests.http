@@ -6,3 +6,20 @@ Content-Type: application/json
   "email": "reviewvio899_r4v@indeedemail.com",
   "password": "password"
 }
+
+### Find a particular user with a given ID
+GET http://localhost:3000/auth/1
+
+### Find all users with a given email
+GET http://localhost:3000/auth?email=reviewvio9_gbi@indeedemail.com
+
+### Delete a user with a given id
+DELETE http://localhost:3000/auth/2345678
+
+### Update a user
+PATCH http://localhost:3000/auth/2345678
+Content-Type: application/json
+
+{
+  "password": "letmein"
+}
