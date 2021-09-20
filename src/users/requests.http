@@ -17,7 +17,7 @@ GET http://localhost:3000/auth?email=reviewvio9_gbi@indeedemail.com
 DELETE http://localhost:3000/auth/2345678
 
 ### Update a user
-PATCH http://localhost:3000/auth/2345678
+PATCH http://localhost:3000/auth/2
 Content-Type: application/json
 
 {
