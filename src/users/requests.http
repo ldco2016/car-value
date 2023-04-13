@@ -3,7 +3,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "pablo2@alunacare.com",
+  "email": "pablo2@whocares.com",
   "password": "password"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "pablo@alunacare.com",
+  "email": "pablo@whocares.com",
   "password": "password"
 }
 
