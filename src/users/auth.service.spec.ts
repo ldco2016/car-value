@@ -6,7 +6,7 @@ import { UsersService } from './users.service';
 // modify test to avoid the fact that functions cannot take
 // a 'done' callback and return something. Either we use a 'done'
 // callback or return a promise.
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -54,7 +54,7 @@ describe('AuthService', () => {
     expect(hash).toBeDefined();
   });
 
-  // This test had to be refactored to remove try/catch and done callback
+  // These tests had to be refactored to remove try/catch and done callback
   it('throws an error if user signs up with email that is in use', async (done) => {
     fakeUsersService.find = () =>
       Promise.resolve([{ id: 1, email: 'a', password: '1' } as User]);
@@ -64,20 +64,19 @@ describe('AuthService', () => {
   });
 
   it('throws if signin is called with an unused email', async (done) => {
-    try {
-      await service.signin('pablo@alunacare.com', 'ghjkl');
-    } catch (error) {
-      done();
-    }
+    await expect(service.signin('dfghj@gmail.com', 'password')).rejects.toThrow(
+      NotFoundException,
+    );
   });
 
   it('throws if an invalid password is provided', async (done) => {
-    await service.signup('pablo@alunacare.com', 'asdfgh');
-    try {
-      await service.signin('pablo@alunacare.com', 'passoword');
-    } catch (error) {
-      done();
-    }
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'asdff@gmail.com', password: 'asdfg' } as User,
+      ]);
+    await expect(service.signin('sdfgh@gmail.com', 'password')).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('returns a user if correct password is provided', async () => {
