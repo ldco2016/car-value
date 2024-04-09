@@ -2,6 +2,11 @@ import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
+// Due to breaking changes in the Jest library, I needed to
+// modify test to avoid the fact that functions cannot take
+// a 'done' callback and return something. Either we use a 'done'
+// callback or return a promise.
+import { BadRequestException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -49,13 +54,13 @@ describe('AuthService', () => {
     expect(hash).toBeDefined();
   });
 
+  // This test had to be refactored to remove try/catch and done callback
   it('throws an error if user signs up with email that is in use', async (done) => {
-    await service.signup('someemail@email.com', 'dfghjk');
-    try {
-      await service.signup('someemail@email.com', 'dfghjk');
-    } catch (error) {
-      done();
-    }
+    fakeUsersService.find = () =>
+      Promise.resolve([{ id: 1, email: 'a', password: '1' } as User]);
+    await expect(service.signup('asdf@gmail.com', 'asdf')).rejects.toThrow(
+      BadRequestException,
+    );
   });
 
   it('throws if signin is called with an unused email', async (done) => {
